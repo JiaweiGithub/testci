@@ -1,6 +1,9 @@
 name: E2E Check
 
 on:
+  pull_request:
+    branches:
+      - main  # 监听针对 main 分支的 PR
   push:
     branches:
       - main  # 触发 CI 的分支，您可以根据需要更改
