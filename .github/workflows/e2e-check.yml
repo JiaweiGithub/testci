@@ -1,0 +1,26 @@
+name: E2E Check
+
+on:
+  push:
+    branches:
+      - main  # 触发 CI 的分支，您可以根据需要更改
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build Docker image
+        run: |
+          docker build -t my-go-app:v1.0 .
+
+      - name: Run E2E tests
+        run: |
+          chmod +x e2e.sh
+          ./e2e.sh
